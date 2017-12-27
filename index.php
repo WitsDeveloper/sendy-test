@@ -204,8 +204,8 @@ if( isset($_POST['Submit']) ){
 	
 	if( !empty($sendy_api_url) && !empty($geo_lat) && !empty($geo_long) ){
 				
-		$api_key = "WSqQYBZSn8R99QGtE69Z";
-		$api_username = "cantinadifrascatiltd";
+		$api_key = "cZGFbGShHTHYnYJTN7FC";
+		$api_username = "witstechnologiesltd";
 		$command = 'request';
 		$from_name = "Test Shop";
 		$from_lat = -1.3370364;
@@ -278,7 +278,7 @@ if( isset($_POST['Submit']) ){
 	
 	}else{
 		echo "<h1>ERROR</h1>";
-		echo "Check ";
+		echo "Check your API keys and ensure all mandatory fields are not empty before submission";
 	}
 	echo "</pre>";
 }
