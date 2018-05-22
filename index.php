@@ -2,7 +2,7 @@
 //Variables
 //$sendy_api_url = "https://api.sendyit.com/v1/";
 $sendy_api_url = "https://apitest.sendyit.com/v1/";
-$google_maps_api_key = "AIzaSyBAgQ-vCy1106_l1iZFudZeYQGx2ghCS3g";
+$google_maps_api_key = "--Add your key here--";
 
 //Form data
 $billing_first_name = isset($_POST['billing_first_name'])?$_POST['billing_first_name']:"";
@@ -204,8 +204,8 @@ if( isset($_POST['Submit']) ){
 	
 	if( !empty($sendy_api_url) && !empty($geo_lat) && !empty($geo_long) ){
 				
-		$api_key = "cZGFbGShHTHYnYJTN7FC";
-		$api_username = "witstechnologiesltd";
+		$api_key = "--Add your key here--";
+		$api_username = "--Add your username here--";
 		$command = 'request';
 		$from_name = "Test Shop";
 		$from_lat = -1.3370364;
