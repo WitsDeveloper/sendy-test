@@ -1,8 +1,8 @@
 # Sample Demo Using Google Maps API and Sendy API
 ## Requires
-* [jQuery Geocoding and Places Autocomplete Plugin] (https://github.com/ubilabs/geocomplete)
-* [Google Maps API geocoding] (https://developers.google.com/maps/documentation/geocoding/overview)
-* [Sendy Public API] (https://sendypublicapi.docs.apiary.io/)
+* [jQuery Geocoding and Places Autocomplete Plugin](https://github.com/ubilabs/geocomplete)
+* [Google Maps API geocoding](https://developers.google.com/maps/documentation/geocoding/overview)
+* [Sendy Public API](https://sendypublicapi.docs.apiary.io/)
 
 ## What the code does
 * Simulates how to get geocoding data from Google Maps
