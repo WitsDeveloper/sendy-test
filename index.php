@@ -1,8 +1,15 @@
 <?php
+/**
+ * Sendy Web API Test - V 1.0.0
+ *
+ * @author Sammy M. Waweru <sammy@witstechnologies.co.ke>, 2018
+ * @author Wits Technologies Ltd https://witstechnologies.co.ke, 2018
+ * @license MIT License <http://www.opensource.org/licenses/mit-license.php>
+ */
+
 //Variables
-//$sendy_api_url = "https://api.sendyit.com/v1/";
-$sendy_api_url = "https://apitest.sendyit.com/v1/";
-$google_maps_api_key = "--Add your key here--";
+$sendy_api_url = "https://api.sendyit.com/v1/api/";
+$google_maps_api_key = "AIzaSyBAgQ-vCy1106_l1iZFudZeYQGx2ghCS3g";
 
 //Form data
 $billing_first_name = isset($_POST['billing_first_name'])?$_POST['billing_first_name']:"";
@@ -61,10 +68,7 @@ $billing_postcode = isset($_POST['billing_postcode'])?$_POST['billing_postcode']
           <p class="form-group form-row-wide address-field update_totals_on_change validate-required" id="billing_country_field">
             <label for="billing_country" class="">Country <abbr class="required" title="required">*</abbr></label>
             <select name="billing_country" id="billing_country" autocomplete="country" class="country_to_state country_select form-control" required>
-              <option value="">Select a country…</option>              
-              <option value="KE" selected="selected">Kenya</option>              
-              <option value="TZ">Tanzania</option>              
-              <option value="UG">Uganda</option>              
+              <option value="KE" selected="selected">Kenya</option>
             </select>
           </p>
           <p class="form-group form-row-wide address-field validate-required woocommerce-validated" id="billing_address_1_field">
@@ -203,14 +207,14 @@ if( isset($_POST['Submit']) ){
 	$geo_addr = $georesults["results"][0]["formatted_address"];
 	
 	if( !empty($sendy_api_url) && !empty($geo_lat) && !empty($geo_long) ){
-				
-		$api_key = "--Add your key here--";
-		$api_username = "--Add your username here--";
-		$command = 'request';
+		$command = 'request';			
+		$api_key = "9wSkfZMef4fCxNAfH6Hs";
+		$api_username = "witstechnologiesltd";
+		$vendor_type = 1;		
 		$from_name = "Test Shop";
-		$from_lat = -1.3370364;
-		$from_long = 36.7081472;
-		$from_address = "Marula Ln, Nairobi, Kenya";
+		$from_lat = -1.3073773;
+		$from_long = 36.79981120000002;
+		$from_address = "Haile Selassie Ave, Nairobi, Kenya";
 		$from_description = "To be picked from $from_address ($from_lat,$from_long)";
 		$to_name = 'Customer';
 		$to_lat = floatval($geo_lat);
@@ -220,6 +224,11 @@ if( isset($_POST['Submit']) ){
 		$recepient_name = "Test User";
 		$recepient_phone = "0711222333";
 		$recepient_email = "test@domain.com";
+		$recepient_notes = "Test recipient notes";
+		$sender_name = "Test Sender";
+		$sender_phone = "0711333444";
+		$sender_email = "sender@domain.com";
+		$sender_notes = "Test sender notes";
 		$pick_up_date = date('Y-m-d', strtotime("+1 week"));
 		$status = false;
 		$pay_method = 1;
@@ -228,26 +237,44 @@ if( isset($_POST['Submit']) ){
 		$note = $from_description." ".$to_description;
 		$note_status = true;
 		$request_type = "quote";
+		$order_type = "ondemand_delivery";
+		$ecommerce_order = true;
+		$express = true;
+		$skew = 1;
+		$weight = 20;
+		$height = 10;
+		$width = 200;
+		$length = 30;
+		$item_name = "Sample Product A";
+		$request_token_id = md5($api_key.$api_username); 
 								
 		$data = array(
 			"api_key" => "".$api_key."",
 			"api_username" => "".$api_username."",
+			"vendor_type" => 1,
 			"from" => array(
-				'from_name' => "".$from_name."",
-				'from_lat' => $from_lat,
-				'from_long' => $from_long,
-				'from_description' => "".$from_description."",
+				"from_name" => "".$from_name."",
+				"from_lat" => $from_lat,
+				"from_long" => $from_long,
+				"from_description" => "".$from_description."",
 			),
 			"to" => array(
-				'to_name' => "".$to_name."",
-				'to_lat' => $to_lat,
-				'to_long' => $to_long,
-				'to_description' => "".$to_description."",
+				"to_name" => "".$to_name."",
+				"to_lat" => $to_lat,
+				"to_long" => $to_long,
+				"to_description" => "".$to_description."",
 			),
 			"recepient" => array(
-				'recepient_name' => "".$recepient_name."",
-				'recepient_phone' => "".$recepient_phone."",
-				'recepient_email' => "".$recepient_email."",
+				"recepient_name" => "".$recepient_name."",
+				"recepient_phone" => "".$recepient_phone."",
+				"recepient_email" => "".$recepient_email."",
+				"recepient_notes" => "".$recepient_notes.""
+			),
+			"sender" => array(
+				"sender_name" => "".$sender_name."",
+				"sender_phone" => "".$sender_phone."",
+				"sender_email" => "".$sender_email."",
+				"sender_notes" => "".$sender_notes.""
 			),
 			"delivery_details" => array(
 				"pick_up_date" => "".$pick_up_date."",
@@ -259,8 +286,20 @@ if( isset($_POST['Submit']) ){
 				"return" => $return,
 				"note" => "".$note."",
 				"note_status" => $note_status,
-				"request_type" => "".$request_type.""
+				"request_type" => "".$request_type."",
+				"order_type" => "".$order_type."",
+				"ecommerce_order" => $ecommerce_order,
+				"express" => $express,
+				"skew" => $skew,
+				"package_size" => array(
+					"weight" => $weight,
+					"height" => $height,
+					"width" => $width,
+					"length" => $length,
+					"item_name" => "".$item_name.""
+				),
 			),
+			"request_token_id" => "".$request_token_id.""
 		);
 		
 		echo "<h1>DATA SENT TO SENDY API</h1>";
@@ -278,7 +317,7 @@ if( isset($_POST['Submit']) ){
 	
 	}else{
 		echo "<h1>ERROR</h1>";
-		echo "Check your API keys and ensure all mandatory fields are not empty before submission";
+		echo "Check ";
 	}
 	echo "</pre>";
 }
